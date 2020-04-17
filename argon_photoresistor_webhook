@@ -1,0 +1,15 @@
+
+int analogValue; //declaring variable which will be storing sensor value beforehand
+int photoresistor = A0;
+
+void setup() {
+    pinMode(photoresistor, INPUT);  //setting the photoresistor pin input
+    
+}
+
+void loop() {
+    analogValue = analogRead(photoresistor);        //strong analog read value from sensor to variable
+    String lightValue = String(analogValue);        //storing the read value as string
+    Particle.publish("light", lightValue, PRIVATE); //sending the data to ThingsSpeak
+    delay(30000);
+}
